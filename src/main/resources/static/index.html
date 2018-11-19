@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+    <title>Hello AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="UserService.js"></script>
+</head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+}
+</style>
+<body>
+<div ng-controller="UserService">
+    <!--<select id="UserSelector" ng-model="userSelected" ng-change="getExercises(userSelected)" style="width: 30%;">-->
+        <select id="UserSelector" ng-model="userSelected" ng-change="getExercises(userSelected)" placeholder="Username" style="width: 30%;">
+            <option value="" disabled selected hidden>Username</option>
+        <option ng-repeat="user in users"  value="{{user.id}}">{{user.name}}</option>
+    </select>
+    <select id="ExerciseSelector" ng-model="exerciseSelector" ng-change="getData(exerciseSelector)" placeholder="Exercise" style="width: 30%;">
+        <option value="" disabled selected hidden>Exercise</option>
+        <option ng-repeat="exercise in exercises" value="{{exercise.exerciseId}}">{{exercise.exercise}}</option>
+    </select>
+
+    <table ng-if="exercisesTable.length != 0" >
+        <tr>
+            <th>UserName</th>
+            <th>Exercise</th>
+            <th>Count</th>
+            <th>Score</th>
+        </tr>
+
+        <tr ng-repeat = "exercise in exercisesTable">
+            <td>{{ exercise.userName }}</td>
+            <td>{{ exercise.exercise }}</td>
+            <td>{{ exercise.count }}</td>
+            <td>{{ exercise.score.toFixed(2) }}</td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

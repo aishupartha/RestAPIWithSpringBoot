@@ -3,6 +3,7 @@ package com.codingchallenge.RestFulApi.model;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class Exercises {
     public int userId;
     public int exerciseId;

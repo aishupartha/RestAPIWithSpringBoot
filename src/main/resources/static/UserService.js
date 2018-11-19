@@ -1,6 +1,8 @@
 angular.module('demo', [])
 .controller('UserService', function($scope, $http) {
-/**/
+/* The functions are defined for consuming the API and
+setting the object in the scope to be retrived by the Html.
+ The execriceTable is initialized as empty array and when size>0 then the table is rendered */
 $scope.exercisesTable=[];
     $http.get('/userlist')
         .then(function(response) {

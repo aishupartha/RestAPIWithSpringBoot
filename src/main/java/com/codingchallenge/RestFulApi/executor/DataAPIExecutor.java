@@ -1,46 +1,27 @@
 package com.codingchallenge.RestFulApi.executor;
 
-import com.codingchallenge.RestFulApi.exception.ErrorMessage;
-import com.codingchallenge.RestFulApi.repository.MetadataScript;
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import com.codingchallenge.RestFulApi.model.Exercises;
+import com.codingchallenge.RestFulApi.model.Users;
+import com.codingchallenge.RestFulApi.repository.MetadataScript;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 
 @Service
+/*The service class is where the business logic and also repository call is made to fetch the data*/
 public class DataAPIExecutor {
     @Autowired
     MetadataScript reporsitory;
-    public static Gson gson=new Gson();
-
-    public ResponseEntity getUserList(){
-        String userList=gson.toJson(reporsitory.getUserList());
-        HttpStatus status=HttpStatus.OK;
-        if(userList==null || userList.isEmpty()) {
-            HashMap<String,String> errorMessage=new HashMap<String,String>();
-            errorMessage.put("ERROR_MESSAGE",ErrorMessage.ERR_USER_LIST);
-            userList = gson.toJson(errorMessage);
-            status=HttpStatus.NO_CONTENT;
-        }
-        return new ResponseEntity(userList, status);
+    /*Retrieves the List of users with the model object Users */
+    public List<Users> getUserList(){
+        return reporsitory.getUserList();
     }
 
-    public ResponseEntity getExerciseList(int userId,int exerciseId){
-        HttpStatus status=HttpStatus.OK;
-        if(userId==0){
-            new ResponseEntity(ErrorMessage.ERR_USER_NOTAVAILABLE,HttpStatus.NO_CONTENT);
-        }
-        String exerciseList=gson.toJson(reporsitory.getExerciseList(userId,exerciseId));
-        if(exerciseList==null || exerciseList.isEmpty()){
-            HashMap<String,String> errorMessage=new HashMap<String,String>();
-            errorMessage.put("ERROR_MESSAGE",ErrorMessage.ERR_EXERCISE_LIST);
-            exerciseList= gson.toJson(errorMessage);
-            status=HttpStatus.NO_CONTENT;
-        }
-        return new ResponseEntity(exerciseList, status);
+    /*Retrieves the List of Exercise with the model object Exercises */
+    public List<Exercises> getExerciseList(int userId,int exerciseId){
+        return reporsitory.getExerciseList(userId,exerciseId);
+
     }
 }

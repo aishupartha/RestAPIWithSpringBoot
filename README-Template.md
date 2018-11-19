@@ -1,6 +1,6 @@
 # Project Title
 
-The URL can be accessed  using EC2 instance: http://ec2-13-59-21-175.us-east-2.compute.amazonaws.com:8080/
+The URL can be accessed  using EC2 instance: http://ec2-13-59-5-180.us-east-2.compute.amazonaws.com:8080
 I have also hosted the local host port 8080 using ngrok in the following link :https://12f462ee.ngrok.io/
 
 Coding Challenge to Exhibit the Users and The Exercise performed by various users and the score for the same.

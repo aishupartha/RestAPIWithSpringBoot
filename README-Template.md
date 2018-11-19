@@ -23,23 +23,24 @@ API 1: /userlist
 
 RequestMethod.GET
 Response : JSON
-[
-    {
+    [
+      {
         "id": 2,
         "name": "user"
-    },
-    {
-        "id": 1,
-        "name": "admin"
-    },
-    {
-        "id": 34,
-        "name": "SIM266057"
-    },
-    {
-        "id": 35,
-        "name": "SIM266057"
-    }...]
+        },
+        {
+            "id": 1,
+         "name": "admin"
+        },
+        {
+         "id": 34,
+            "name": "SIM266057"
+        },
+        {
+         "id": 35,
+            "name": "SIM266057"
+        }...
+        ]
 
     API 2: /user/<<user_id>>/exercise
 

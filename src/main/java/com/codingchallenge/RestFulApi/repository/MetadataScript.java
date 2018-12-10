@@ -25,15 +25,24 @@ public class MetadataScript {
     * It executes the given query and returns the ResultSet.
     * This avoids the multiple times the connection needs to be procured*/
     public static ResultSet connectionDetails(String query){
+        Connection connection=null;
         ResultSet resultSet=null;
         try{
-             Connection connection = DriverManager.getConnection("jdbc:postgresql://"+host, username, password);
+              connection = DriverManager.getConnection("jdbc:postgresql://"+host, username, password);
             Statement statement = connection.createStatement();
              resultSet = statement.executeQuery(query);
         }
         catch (SQLException e) {
             e.printStackTrace();
 
+        }
+        finally{
+            try {
+                connection.close();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
         return resultSet;
     }
